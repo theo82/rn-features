@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { useDispatch } from "react-redux";
+import * as placesActions from '../store/places-actions';
 
 const NewDetaiScreen = props => {
     const [titleValue, setTitleValue] = useState('');
+
+    const dispatch = useDispatch();
 
     const titleChangeHandler = text => {
        setTitleValue(text)
     }
 
+    const savePlaceHandler = () => {
+        dispatch(placesActions.addPlace(titleValue));
+        props.navigation.goBack();
+    };
+
     return (
         <ScrollView>
             <View style={styles.form}>
                 <Text style={styles.label}>Title</Text>
-                <TextInput style={styles.textInput} value={titleValue}/>
-                <Button 
+                <TextInput 
+                    style={styles.textInput} 
+                    onChangeText={titleChangeHandler} 
+                    value={titleValue}
+                />
+                <Button
                     title="Save Place" 
                     color={Colors.primary} 
-                    onPress={() => {}}
+                    onPress={savePlaceHandler}
                 />
             </View>
         </ScrollView>
