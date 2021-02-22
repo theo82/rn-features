@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-nat
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { useDispatch } from "react-redux";
 import * as placesActions from '../store/places-actions';
+import ImagePicker from "../components/ImagePicker";
 
 const NewDetaiScreen = props => {
     const [titleValue, setTitleValue] = useState('');
@@ -27,6 +28,7 @@ const NewDetaiScreen = props => {
                     onChangeText={titleChangeHandler} 
                     value={titleValue}
                 />
+                <ImagePicker />
                 <Button
                     title="Save Place" 
                     color={Colors.primary} 
